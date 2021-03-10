@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}задача{% endblock title %}
+{%  block content %}
+
+    <div class="jumbotron jumbotron-fluid" style="background-color: #f8f1f1">
+        <div class="container">
+            <a href="{% url "issue-list" %}" style="color: #b088f9">вернуться к списку задач</a>
+            <h1 class="display-4">Задача '{{ issue.summary }}'</h1>
+            <h2>{{ issue.description }}</h2>
+            <p class="lead">Статус: {{ issue.get_status_display }}</p>
+            <p class="lead">Тип: {{ issue.type }}</p>
+            {% if not issue.description %}
+              <p></p>
+            {% else %}
+              <p class="lead">{{ issue.description }}</p>
+            {% endif%}
+              <p class="lead">Дата создания: {{ issue.created_at }}</p>
+            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="#">Редактировать задачу</a></h4>
+            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="#">Удалить</a></h4>
+        </div>
+    </div>
+
+{%  endblock content %}
