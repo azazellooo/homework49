@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}новая задача{% endblock title %}
+{% block content %}
+    <div class="jumbotron" style="background-color: #f8f1f1">
+    <h1>Новая задача</h1>
+
+    <form action="{% url "issue-create" %}" method="post">
+        {% include "issue_form.html" %}
+        <div class="col-sm-10">
+          <input type="submit" value="Создать"/>
+        </div>
+    </form>
+    </div>
+{% endblock content %}

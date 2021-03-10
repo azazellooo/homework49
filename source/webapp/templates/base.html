@@ -10,8 +10,8 @@
     <body>
     <nav class="navbar navbar-light" style="background-color: indigo;">
       <div class="container">
-        <a class="navbar-brand" style="color: mediumaquamarine" href="#">все задачи</a>
-        <a class="navbar-brand" style="color: mediumaquamarine"  href="#">новая задача</a>
+        <a class="navbar-brand" style="color: gold" href="{% url "issue-list" %}">все задачи</a>
+        <a class="navbar-brand" style="color: gold"  href="{% url "issue-create" %}">новая задача</a>
       </div>
     </nav>
     {% block content %} {% endblock content %}

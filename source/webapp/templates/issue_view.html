@@ -7,7 +7,7 @@
             <a href="{% url "issue-list" %}" style="color: #b088f9">вернуться к списку задач</a>
             <h1 class="display-4">Задача '{{ issue.summary }}'</h1>
             <h2>{{ issue.description }}</h2>
-            <p class="lead">Статус: {{ issue.get_status_display }}</p>
+            <p class="lead">Статус: {{ issue.status }}</p>
             <p class="lead">Тип: {{ issue.type }}</p>
             {% if not issue.description %}
               <p></p>

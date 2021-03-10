@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, TemplateView
 
 from webapp.models import Issue
@@ -26,5 +27,24 @@ class IssueView(TemplateView):
 
 
 class IssueCreateView(View):
-    pass
+    form = IssueForm
+    template_name = 'issue_create.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form(data=request.POST)
+
+        if form.is_valid():
+            Issue.objects.create(
+                summary=form.cleaned_data.get('summary'),
+                description=form.cleaned_data.get('description'),
+                type=form.cleaned_data.get('type'),
+                status=form.cleaned_data.get('status')
+            )
+            return redirect('issue-list')
+        return render(request, self.template_name, {'form': form})
+
 # Create your views here.
