@@ -47,4 +47,17 @@ class IssueCreateView(View):
             return redirect('issue-list')
         return render(request, self.template_name, {'form': form})
 
+
+class IssueDelete(View):
+    template_name = 'issue_delete.html'
+
+    def get(self, request, **kwargs):
+        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
+        return render(request, self.template_name, {'issue': issue})
+
+    def post(self, request, **kwargs):
+        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
+        issue.delete()
+        return redirect('issue-list')
+
 # Create your views here.

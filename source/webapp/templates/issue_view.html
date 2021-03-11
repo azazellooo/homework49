@@ -16,7 +16,7 @@
             {% endif%}
               <p class="lead">Дата создания: {{ issue.created_at }}</p>
             <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="#">Редактировать задачу</a></h4>
-            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="#">Удалить</a></h4>
+            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "issue-delete" issue.id %}">Удалить</a></h4>
         </div>
     </div>
 
