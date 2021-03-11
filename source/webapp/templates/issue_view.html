@@ -4,20 +4,24 @@
 
     <div class="jumbotron jumbotron-fluid" style="background-color: #f8f1f1">
         <div class="container">
-            <a href="{% url "issue-list" %}" style="color: #b088f9">вернуться к списку задач</a>
-            <h1 class="display-4">Задача '{{ issue.summary }}'</h1>
-            <h2>{{ issue.description }}</h2>
-            <p class="lead">Статус: {{ issue.status }}</p>
-            <p class="lead">Тип: {{ issue.type }}</p>
-            {% if not issue.description %}
-              <p></p>
-            {% else %}
-              <p class="lead">{{ issue.description }}</p>
-            {% endif%}
-              <p class="lead">Дата создания: {{ issue.created_at }}</p>
-            <h4><a class="btn btn-light btn-m" style="background-color: #da9ff9" href="{% url "issue-update" issue.id %}">Редактировать задачу</a></h4>
-            <h4><a class="btn btn-warning btn-m"  href="{% url "issue-delete" issue.id %}">Удалить</a></h4>
-        </div>
+        <div class="card">
+  <div class="card-header">
+    <h1 class="display-4">Задача '{{ issue.summary }}'</h1>
+  </div>
+  <div class="card-body">
+    <p class="card-title">Статус: {{ issue.status }}</p>
+    <p class="card-title">Тип: {{ issue.type }}</p>
+      {% if not issue.description %}
+        <p></p>
+      {% else %}
+        <p class="card-text">{{ issue.description }}</p>
+      {% endif%}
+    <p class="lead">Дата создания: {{ issue.created_at }}</p>
+    <a href="{% url "issue-update" issue.id %}" class="btn btn-light" style="background-color: #da9ff9">Редактировать задачу</a>
+    <a href="{% url "issue-delete" issue.id %}" class="btn btn-warning" >Удалить задачу</a>
+  </div>
+       </div>
+       </div>
     </div>
 
 {%  endblock content %}
