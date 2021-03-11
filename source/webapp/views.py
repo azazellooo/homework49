@@ -48,6 +48,32 @@ class IssueCreateView(View):
         return render(request, self.template_name, {'form': form})
 
 
+class IssueUpdate(View):
+    template_name = 'issue_update.html'
+
+    def get(self, request, *args, **kwargs):
+        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
+        form = IssueForm(initial={
+            'summary': issue.summary,
+            'description': issue.description,
+            'type': issue.type,
+            'status': issue.status
+        })
+        return render(request, self.template_name, context={'issue': issue, 'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = IssueForm(data=request.POST)
+        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
+        if form.is_valid():
+            issue.summary = form.cleaned_data.get('summary')
+            issue.description = form.cleaned_data.get('description')
+            issue.type = form.cleaned_data.get('type')
+            issue.status = form.cleaned_data.get('status')
+            issue.save()
+            return redirect('issue-list')
+        return render(request, self.template_name, context={'issue': issue, 'form': form})
+
+
 class IssueDelete(View):
     template_name = 'issue_delete.html'
 

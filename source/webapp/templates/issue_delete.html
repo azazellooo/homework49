@@ -6,7 +6,7 @@
     <h2 style="color: darkblue">Вы уверены, что хотите удалить задачу "{{ issue.summary }}"?</h2>
     <form action="{% url "issue-delete" issue.id %}" method="post">
         {% csrf_token %}
-        <input type="submit" value="да">
+        <input class="btn btn-warning btn-m" type="submit" value="да">
     </form>
     <h4><a href="{% url "issue-view" issue.id %}" style="color: #b088f9">Отмена</a></h4>
     </div>
