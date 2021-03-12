@@ -10,7 +10,7 @@
   </div>
   <div class="card-body">
     <p class="card-title">Статус: {{ issue.status }}</p>
-    <p class="card-title">Тип: {{ issue.type }}</p>
+    <p>Тип: {% for type in issue.type.all %}{{ type.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
       {% if not issue.description %}
         <p></p>
       {% else %}

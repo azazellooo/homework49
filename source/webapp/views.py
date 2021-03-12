@@ -35,14 +35,14 @@ class IssueCreateView(View):
 
     def post(self, request, *args, **kwargs):
         form = self.form(data=request.POST)
-
         if form.is_valid():
-            Issue.objects.create(
+            issue = Issue.objects.create(
                 summary=form.cleaned_data.get('summary'),
                 description=form.cleaned_data.get('description'),
-                type=form.cleaned_data.get('type'),
                 status=form.cleaned_data.get('status')
             )
+            issue_type = form.cleaned_data.pop('type')
+            issue.type.set(issue_type)
             return redirect('issue-list')
         return render(request, self.template_name, {'form': form})
 
@@ -55,19 +55,22 @@ class IssueUpdate(View):
         form = IssueForm(initial={
             'summary': issue.summary,
             'description': issue.description,
-            'type': issue.type,
+            'type': issue.type.all(),
             'status': issue.status
         })
+
         return render(request, self.template_name, context={'issue': issue, 'form': form})
 
     def post(self, request, *args, **kwargs):
         form = IssueForm(data=request.POST)
         issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
         if form.is_valid():
+            issue_type = form.cleaned_data.pop('type')
+            issue.type.set(issue_type)
             issue.summary = form.cleaned_data.get('summary')
             issue.description = form.cleaned_data.get('description')
-            issue.type = form.cleaned_data.get('type')
             issue.status = form.cleaned_data.get('status')
+
             issue.save()
             return redirect('issue-list')
         return render(request, self.template_name, context={'issue': issue, 'form': form})
