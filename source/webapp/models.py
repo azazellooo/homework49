@@ -1,4 +1,5 @@
 from django.db import models
+from webapp.validators import SymbolCheckValidator, ForbiddenWordsValidator
 
 
 class Type(models.Model):
@@ -16,8 +17,18 @@ class Status(models.Model):
 
 
 class Issue(models.Model):
-    summary = models.CharField(max_length=130, null=False, blank=False, verbose_name='Название')
-    description = models.TextField(max_length=3000, null=False, blank=True)
+    summary = models.CharField(max_length=130,
+                               null=False,
+                               blank=False,
+                               verbose_name='Название',
+                               validators=[SymbolCheckValidator(["%", "$", "@", "#", "^", "&"]), ]
+                               )
+    description = models.TextField(max_length=3000,
+                                   null=False,
+                                   blank=True,
+                                   verbose_name='Описание',
+                                   validators=[ForbiddenWordsValidator(['наркотики', 'насилие', 'алкоголь', 'терроризм']), ]
+                                   )
     type = models.ManyToManyField('webapp.Type', related_name='type', verbose_name='Тип')
     status = models.ForeignKey('webapp.Status', related_name='status', on_delete=models.PROTECT, verbose_name='Статус')
     created_at = models.DateTimeField(auto_now=True, verbose_name='Время создания')
