@@ -102,11 +102,67 @@
   }
 },
 {
+  "model": "webapp.issue",
+  "pk": 20,
+  "fields": {
+    "summary": "dd",
+    "description": "привет",
+    "status": 1,
+    "created_at": "2021-03-21T06:49:22.501Z",
+    "updated_at": "2021-03-21T06:49:22.501Z",
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 25,
+  "fields": {
+    "summary": "to fix bug2",
+    "description": "description",
+    "status": 3,
+    "created_at": "2021-03-22T09:57:11.488Z",
+    "updated_at": "2021-03-22T09:57:11.488Z",
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 26,
+  "fields": {
+    "summary": "to fix bug1",
+    "description": "",
+    "status": 1,
+    "created_at": "2021-03-22T09:57:36.158Z",
+    "updated_at": "2021-03-22T09:57:36.158Z",
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 27,
+  "fields": {
+    "summary": "task N",
+    "description": "task N",
+    "status": 1,
+    "created_at": "2021-03-22T11:00:05.819Z",
+    "updated_at": "2021-03-22T11:00:05.819Z",
+    "type": [
+      1
+    ]
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$ecyix6PG6Den$ivwhAzRAm0yOT3+8CRNlduDKdStg2vsNeBuM5BtnWI0=",
-    "last_login": "2021-03-12T10:20:33.927Z",
+    "last_login": "2021-03-15T09:37:29.931Z",
     "is_superuser": true,
     "username": "user",
     "first_name": "",
