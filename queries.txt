@@ -1,0 +1,12 @@
+1.Issue.objects.filter( Q(updated_at__gte=(date.today()-timedelta(days=30))), status__title='Done')
+
+2. Issue.objects.filter( Q( Q(status__title='New') | Q( status__title='Done') ) & Q( Q(type__title='Bug') | Q(type__title='Task') ) )
+
+3. Issue.objects.filter( Q(summary__icontains='bug') | Q(type__title='Bug' )).exclude(status__title='Done')
+
+Дополнительные:
+
+1.  Issue.objects.all().values('id', 'summary', 'type', 'status')
+
+2. Issue.objects.filter(summary__exact=F('description'))
+
