@@ -5,12 +5,14 @@
       <h1 class="display-4">Все задачи</h1>
       <hr class="my-4">
         {% if not issues %}
-            <h3>Задач нет</h3>>
+            <h3>Задач нет</h3>
         {% else %}
+        {% include 'partial/search_form.html' %}
         {% for issue in issues %}
             <p> <a href="{% url "issue-view" issue.id %}" style="color: #b088f9">{{ issue.summary }}</a>. Статус: {{  issue.status }} </p>
         {% endfor %}
         {% endif %}
       <a class="btn btn-light btn-lg" style="background-color: #da9ff9" href="{% url "issue-create" %}" role="button">Дополнить список задач</a>
+    {% include 'partial/paginate.html' %}
     </div>
 {% endblock content %}

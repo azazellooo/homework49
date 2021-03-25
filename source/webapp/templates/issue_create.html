@@ -5,7 +5,7 @@
     <h1>Новая задача</h1>
 
     <form action="{% url "issue-create" %}" method="post">
-        {% include "issue_form.html" %}
+        {% include "partial/issue_form.html" %}
         <div class="col-sm-10">
           <input type="submit" value="Создать"/>
         </div>

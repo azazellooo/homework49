@@ -6,7 +6,7 @@
     <h1>Редактировать задачу № {{ issue.id }}</h1>
 
     <form action="{% url "issue-update" issue.id %}" method="post">
-        {% include "issue_form.html" %}
+        {% include "partial/issue_form.html" %}
         <div class="col-sm-10">
           <input type="submit" value="Обновить"/>
         </div>
