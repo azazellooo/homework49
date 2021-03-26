@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView, ListView
+from django.views.generic import View, TemplateView, ListView, CreateView
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -9,7 +9,7 @@ from webapp.forms import IssueForm, SearchForm
 
 
 class IssueListView(ListView):
-    template_name = 'index.html'
+    template_name = 'issue/index.html'
     model = Issue
     context_object_name = 'issues'
     paginate_by = 10
@@ -46,7 +46,7 @@ class IssueListView(ListView):
 
 
 class IssueView(TemplateView):
-    template_name = 'issue_view.html'
+    template_name = 'issue/view.html'
 
     def get_context_data(self, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
@@ -57,7 +57,7 @@ class IssueView(TemplateView):
 
 class IssueCreateView(View):
     form = IssueForm
-    template_name = 'issue_create.html'
+    template_name = 'create.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form()
@@ -78,7 +78,7 @@ class IssueCreateView(View):
 
 
 class IssueUpdate(View):
-    template_name = 'issue_update.html'
+    template_name = 'update.html'
 
     def get(self, request, *args, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
@@ -107,7 +107,7 @@ class IssueUpdate(View):
 
 
 class IssueDelete(View):
-    template_name = 'issue_delete.html'
+    template_name = 'delete.html'
 
     def get(self, request, **kwargs):
         issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
