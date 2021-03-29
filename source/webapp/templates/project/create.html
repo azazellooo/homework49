@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="jumbotron" style="background-color: #f8f1f1">
+    <h1>Новый проект</h1>
+
+    <form action="{% url "project-create" %}" method="post">
+        {% include "partial/form.html" %}
+        <div class="col-sm-10">
+          <input type="submit" value="Создать"/>
+        </div>
+    </form>
+    </div>
+
+{% endblock content %}
