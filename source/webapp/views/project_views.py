@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView
 
 from webapp.models import Project
+from webapp.forms import ProjectForm
 
 
 class ProjectListView(ListView):
@@ -15,4 +16,7 @@ class ProjectDetailView(DetailView):
 
 
 class ProjectCreateView(CreateView):
-    pass
+    model = Project
+    template_name = 'project/create.html'
+    form_class = ProjectForm
+    success_url = '/projects'

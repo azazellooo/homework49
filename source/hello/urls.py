@@ -21,12 +21,11 @@ from webapp.views.project_views import ProjectListView, ProjectDetailView, Proje
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('projects/', ProjectListView.as_view(), name='project-list'),
+    path('', ProjectListView.as_view(), name='project-list'),
     path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-view'),
     path('project/add', ProjectCreateView.as_view(), name='project-create'),
-    path('', IssueListView.as_view(), name='issue-list'),
-    path('<int:pk>/', IssueView.as_view(), name='issue-view'),
-    path('issue/add/', IssueCreateView.as_view(), name='issue-create'),
-    path('<int:pk>/delete', IssueDelete.as_view(), name='issue-delete'),
-    path('<int:pk>/update/', IssueUpdate.as_view(), name='issue-update'),
+    path('issue/<int:pk>/', IssueView.as_view(), name='issue-view'),
+    path('<int:pk>/issue/add/', IssueCreateView.as_view(), name='issue-create'),
+    path('issue/<int:pk>/delete', IssueDelete.as_view(), name='issue-delete'),
+    path('issue/<int:pk>/update/', IssueUpdate.as_view(), name='issue-update'),
 ]
