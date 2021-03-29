@@ -38,7 +38,7 @@ class Issue(models.Model):
                                    )
     type = models.ManyToManyField('webapp.Type', related_name='type', verbose_name='Тип')
     status = models.ForeignKey('webapp.Status', related_name='status', on_delete=models.PROTECT, verbose_name='Статус')
-    project = models.ForeignKey('webapp.Project', related_name='project', on_delete=models.CASCADE, verbose_name='Из проекта')
+    project = models.ForeignKey('webapp.Project', related_name='issue', on_delete=models.CASCADE, verbose_name='Из проекта')
     created_at = models.DateTimeField(auto_now=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
 

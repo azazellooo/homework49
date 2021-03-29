@@ -2,13 +2,13 @@
 
 {% block content %}
 
-    <div class="jumbotron" style="background-color: #f8f1f1">
+    <div class="jumbotron text-center" style="background-color: #f8f1f1">
         <h1>Все проекты</h1>
         {% if not projects %}
             <h3>Проектов нет</h3>
         {% else %}
         {% for project in projects %}
-            <a href="#"><p>{{ project.summary }}</p></a>
+            <a href=" {% url 'project-view' project.id %}" style="color: #b088f9"><p>{{ project.summary }}</p></a>
         {% endfor %}
         {% endif %}
     </div>

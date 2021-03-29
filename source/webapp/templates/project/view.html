@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-color: #f8f1f1">
     <h1>{{ project.summary }}</h1>
         <p>{{ project.description }}</p>
-        <h3>Задачи проекта:</h3>
-    {% for issue in project.project.all %}
+        <p style="color: darkorchid">Старт: {{ project.started_at }}</p>
+    <a class="btn btn-warning btn-lg" href="{% url "issue-create" project.id %}">добавить задачу</a>
+    {% if not project.issue.all %}
+        <h2>Задач нет.</h2>
+    {% else %}
+        <h3 style="margin-top: 50px; color: darkorchid">Задачи проекта:</h3>
+    {% for issue in project.issue.all %}
         <p> <a href="{% url "issue-view" issue.id %}" style="color: #b088f9">{{ issue.summary }}</a>. Статус: {{  issue.status }} </p>
     {% endfor %}
+    {% endif %}
     </div>
 {% endblock content %}
