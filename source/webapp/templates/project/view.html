@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+    <h1>{{ project.summary }}</h1>
+        <p>{{ project.description }}</p>
+        <h3>Задачи проекта:</h3>
+    {% for issue in project.project.all %}
+        <p> <a href="{% url "issue-view" issue.id %}" style="color: #b088f9">{{ issue.summary }}</a>. Статус: {{  issue.status }} </p>
+    {% endfor %}
+    </div>
+{% endblock content %}

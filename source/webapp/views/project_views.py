@@ -10,7 +10,8 @@ class ProjectListView(ListView):
 
 
 class ProjectDetailView(DetailView):
-    pass
+    template_name = 'project/view.html'
+    model = Project
 
 
 class ProjectCreateView(CreateView):
