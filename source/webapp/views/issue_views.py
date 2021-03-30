@@ -1,5 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.views.generic import View, TemplateView, ListView, CreateView
+from django.views.generic import (
+    View,
+    TemplateView,
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -69,33 +76,14 @@ class IssueCreateView(CreateView):
         return super().form_valid(form)
 
 
-class IssueUpdate(View):
+class IssueUpdateView(UpdateView):
+    model = Issue
     template_name = 'issue/update.html'
+    form_class = IssueForm
+    context_object_name = 'issue'
 
-    def get(self, request, *args, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
-        form = IssueForm(initial={
-            'summary': issue.summary,
-            'description': issue.description,
-            'type': issue.type.all(),
-            'status': issue.status
-        })
-
-        return render(request, self.template_name, context={'issue': issue, 'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = IssueForm(data=request.POST)
-        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
-        if form.is_valid():
-            issue_type = form.cleaned_data.pop('type')
-            issue.type.set(issue_type)
-            issue.summary = form.cleaned_data.get('summary')
-            issue.description = form.cleaned_data.get('description')
-            issue.status = form.cleaned_data.get('status')
-
-            issue.save()
-            return redirect('project-list')
-        return render(request, self.template_name, context={'issue': issue, 'form': form})
+    def get_success_url(self):
+        return reverse('issue-view', kwargs={'pk': self.kwargs.get('pk')})
 
 
 class IssueDelete(View):
