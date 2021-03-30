@@ -7,8 +7,9 @@
         <p style="color: darkorchid">Старт: {{ project.started_at }}</p>
     <a class="btn btn-success btn-lg" href="{% url "project-update" project.id %}">Редактировать проект</a>
     <a class="btn btn-warning btn-lg" href="{% url "issue-create" project.id %}">добавить задачу</a>
+    <a class="btn btn-dark btn-lg" href="{% url "project-delete" project.id %}">Удалить проект</a>
     {% if not project.issue.all %}
-        <h2>Задач нет.</h2>
+        <h2 style="margin-top: 100px">Задач нет.</h2>
     {% else %}
         <h3 style="margin-top: 50px; color: darkorchid">Задачи проекта:</h3>
     {% for issue in project.issue.all %}

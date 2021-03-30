@@ -1,4 +1,5 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import reverse
 
 from webapp.models import Project
@@ -20,7 +21,7 @@ class ProjectCreateView(CreateView):
     model = Project
     template_name = 'project/create.html'
     form_class = ProjectForm
-    success_url = '/projects'
+    success_url = reverse_lazy('project-list')
 
 
 class ProjectUpdateView(UpdateView):
@@ -31,3 +32,10 @@ class ProjectUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('project-view', kwargs={'pk': self.kwargs.get('pk')})
+
+
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'project/delete.html'
+    context_object_name = 'project'
+    success_url = reverse_lazy('project-list')
