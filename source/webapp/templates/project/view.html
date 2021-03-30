@@ -5,6 +5,7 @@
     <h1>{{ project.summary }}</h1>
         <p>{{ project.description }}</p>
         <p style="color: darkorchid">Старт: {{ project.started_at }}</p>
+    <a class="btn btn-success btn-lg" href="{% url "project-update" project.id %}">Редактировать проект</a>
     <a class="btn btn-warning btn-lg" href="{% url "issue-create" project.id %}">добавить задачу</a>
     {% if not project.issue.all %}
         <h2>Задач нет.</h2>

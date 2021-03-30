@@ -18,7 +18,7 @@ class Status(models.Model):
 
 class Project(models.Model):
     started_at = models.DateField(verbose_name='Дата начала')
-    finished_at = models.DateField(verbose_name='Дата окончения', blank=True, null=True)
+    finished_at = models.DateField(verbose_name='Дата окончания', blank=True, null=True)
     summary = models.CharField(max_length=130, verbose_name='Название')
     description = models.TextField(max_length=5000, verbose_name='Описание')
 
