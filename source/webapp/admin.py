@@ -12,7 +12,7 @@ class IssueAdmin(admin.ModelAdmin):
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['id', 'summary']
+    list_display = ['id', 'summary', 'is_deleted']
     list_filter = ['started_at']
     search_fields = ['summary', 'description']
     fields = ['summary', 'description', 'started_at', 'finished_at']

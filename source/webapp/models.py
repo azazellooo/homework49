@@ -21,6 +21,7 @@ class Project(models.Model):
     finished_at = models.DateField(verbose_name='Дата окончания', blank=True, null=True)
     summary = models.CharField(max_length=130, verbose_name='Название')
     description = models.TextField(max_length=5000, verbose_name='Описание')
+    is_deleted = models.BooleanField(default=False)
 
 
 class Issue(models.Model):
