@@ -3,7 +3,7 @@ from webapp.views.issue_views import (
     IssueView,
     IssueCreateView,
     IssueUpdateView,
-    IssueDelete,
+    IssueDeleteView,
 )
 
 from webapp.views.project_views import (

@@ -4,6 +4,7 @@
 
     <div class="jumbotron jumbotron-fluid" style="background-color: #f8f1f1">
         <div class="container">
+        <h4><a href="{% url 'project-view' issue.project.pk %}" style="color: #b088f9">&#8666; Другие задачи</a></h4>
         <div class="card">
   <div class="card-header">
     <h1 class="display-4">Задача '{{ issue.summary }}'</h1>

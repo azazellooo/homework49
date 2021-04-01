@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.urls import reverse_lazy
 from django.views.generic import (
     View,
     TemplateView,
@@ -86,16 +87,13 @@ class IssueUpdateView(UpdateView):
         return reverse('issue-view', kwargs={'pk': self.kwargs.get('pk')})
 
 
-class IssueDelete(View):
+class IssueDeleteView(DeleteView):
     template_name = 'issue/delete.html'
+    model = Issue
+    context_object_name = 'issue'
 
-    def get(self, request, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
-        return render(request, self.template_name, {'issue': issue})
+    def get_success_url(self):
+        return reverse('project-view', kwargs={'pk': self.object.project.pk})
 
-    def post(self, request, **kwargs):
-        issue = get_object_or_404(Issue, pk=kwargs.get('pk'))
-        issue.delete()
-        return redirect('project-list')
 
 # Create your views here.
