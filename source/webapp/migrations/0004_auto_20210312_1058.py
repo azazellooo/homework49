@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('webapp', '0003_auto_20210312_1015'),
+        ('todolist', '0003_auto_20210312_1015'),
     ]
 
     operations = [
@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='issue',
             name='type_new',
-            field=models.ManyToManyField(blank=True, related_name='issue', to='webapp.Type'),
+            field=models.ManyToManyField(blank=True, related_name='issue', to='todolist.Type'),
         ),
         migrations.DeleteModel(
             name='IssueType',

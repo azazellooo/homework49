@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from webapp.models import Issue, Type, Status, Project
+from todolist.models import Issue, Type, Status, Project
 
 
 class IssueAdmin(admin.ModelAdmin):

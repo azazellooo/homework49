@@ -1,4 +1,4 @@
-from webapp.views.issue_views import (
+from todolist.views.issue_views import (
     IssueListView,
     IssueView,
     IssueCreateView,
@@ -6,7 +6,7 @@ from webapp.views.issue_views import (
     IssueDeleteView,
 )
 
-from webapp.views.project_views import (
+from todolist.views.project_views import (
     ProjectListView,
     ProjectDetailView,
     ProjectCreateView,

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('webapp', '0002_auto_20210312_0954'),
+        ('todolist', '0002_auto_20210312_0954'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='issue',
             name='type',
-            field=models.ManyToManyField(blank=True, related_name='issue', through='webapp.IssueType', to='webapp.Type'),
+            field=models.ManyToManyField(blank=True, related_name='issue', through='todolist.IssueType', to='todolist.Type'),
         ),
     ]

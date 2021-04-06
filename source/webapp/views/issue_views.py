@@ -12,8 +12,8 @@ from django.db.models import Q
 from django.utils.http import urlencode
 
 
-from webapp.models import Issue, Project
-from webapp.forms import IssueForm, SearchForm
+from todolist.models import Issue, Project
+from todolist.forms import IssueForm, SearchForm
 
 
 class IssueListView(ListView):

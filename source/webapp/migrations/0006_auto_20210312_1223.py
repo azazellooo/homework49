@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('webapp', '0005_auto_20210312_1058'),
+        ('todolist', '0005_auto_20210312_1058'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='issue',
             name='type',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.PROTECT, related_name='type', to='webapp.type', verbose_name='Тип'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.PROTECT, related_name='type', to='todolist.type', verbose_name='Тип'),
             preserve_default=False,
         ),
     ]

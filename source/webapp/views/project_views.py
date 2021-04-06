@@ -3,8 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import reverse
 
-from webapp.models import Project
-from webapp.forms import ProjectForm
+from todolist.models import Project
+from todolist.forms import ProjectForm
 
 
 class ProjectListView(ListView):
