@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('todolist', '0004_auto_20210312_1058'),
+        ('webapp', '0004_auto_20210312_1058'),
     ]
 
     operations = [

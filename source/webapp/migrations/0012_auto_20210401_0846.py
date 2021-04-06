@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('todolist', '0011_issue_project'),
+        ('webapp', '0011_issue_project'),
     ]
 
     operations = [
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='issue',
             name='project',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='issue', to='todolist.project', verbose_name='Из проекта'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='issue', to='webapp.project', verbose_name='Из проекта'),
         ),
         migrations.AlterField(
             model_name='project',

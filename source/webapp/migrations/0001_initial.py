@@ -34,8 +34,8 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, max_length=3000)),
                 ('created_at', models.DateTimeField(auto_now=True, verbose_name='Время создания')),
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Время обновления')),
-                ('status', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='status', to='todolist.status', verbose_name='Статус')),
-                ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='type', to='todolist.type', verbose_name='Тип')),
+                ('status', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='status', to='webapp.status', verbose_name='Статус')),
+                ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='type', to='webapp.type', verbose_name='Тип')),
             ],
         ),
     ]

@@ -7,14 +7,14 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('todolist', '0010_project'),
+        ('webapp', '0010_project'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='issue',
             name='project',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='project', to='todolist.project', verbose_name='Проект'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='project', to='webapp.project', verbose_name='Проект'),
             preserve_default=False,
         ),
     ]

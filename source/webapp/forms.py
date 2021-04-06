@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import widgets
 
-from todolist.models import Type, Status, Issue, Project
+from webapp.models import Type, Status, Issue, Project
 
 
 class IssueForm(forms.ModelForm):

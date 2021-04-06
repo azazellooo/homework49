@@ -7,14 +7,14 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('todolist', '0001_initial'),
+        ('webapp', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='issue',
             name='status',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='status', to='todolist.status', verbose_name='Статус'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='status', to='webapp.status', verbose_name='Статус'),
         ),
         migrations.AlterField(
             model_name='issue',
@@ -29,13 +29,13 @@ class Migration(migrations.Migration):
             name='IssueType',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('issue', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='issue_type', to='todolist.issue', verbose_name='Задача')),
-                ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='type_issue', to='todolist.type', verbose_name='Тип')),
+                ('issue', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='issue_type', to='webapp.issue', verbose_name='Задача')),
+                ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='type_issue', to='webapp.type', verbose_name='Тип')),
             ],
         ),
         migrations.AddField(
             model_name='issue',
             name='type',
-            field=models.ManyToManyField(blank=True, related_name='type', through='todolist.IssueType', to='todolist.Type'),
+            field=models.ManyToManyField(blank=True, related_name='type', through='webapp.IssueType', to='webapp.Type'),
         ),
     ]
