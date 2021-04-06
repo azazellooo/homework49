@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from webapp.models import Project
 from webapp.forms import ProjectForm
@@ -26,14 +27,14 @@ class ProjectDetailView(DetailView):
         return queryset.filter(is_deleted=False)
 
 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'project/create.html'
     form_class = ProjectForm
     success_url = reverse_lazy('project-list')
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProjectForm
     template_name = 'project/update.html'
     model = Project
@@ -47,7 +48,7 @@ class ProjectUpdateView(UpdateView):
         return queryset.filter(is_deleted=False)
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'project/delete.html'
     context_object_name = 'project'

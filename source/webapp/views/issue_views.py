@@ -10,6 +10,7 @@ from django.views.generic import (
 )
 from django.db.models import Q
 from django.utils.http import urlencode
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from webapp.models import Issue, Project
@@ -63,7 +64,7 @@ class IssueView(TemplateView):
         return context
 
 
-class IssueCreateView(CreateView):
+class IssueCreateView(LoginRequiredMixin, CreateView):
     model = Issue
     template_name = 'issue/create.html'
     form_class = IssueForm
@@ -77,7 +78,7 @@ class IssueCreateView(CreateView):
         return super().form_valid(form)
 
 
-class IssueUpdateView(UpdateView):
+class IssueUpdateView(LoginRequiredMixin, UpdateView):
     model = Issue
     template_name = 'issue/update.html'
     form_class = IssueForm
@@ -87,7 +88,7 @@ class IssueUpdateView(UpdateView):
         return reverse('issue-view', kwargs={'pk': self.kwargs.get('pk')})
 
 
-class IssueDeleteView(DeleteView):
+class IssueDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'issue/delete.html'
     model = Issue
     context_object_name = 'issue'

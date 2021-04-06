@@ -10,10 +10,15 @@
     <body>
     {% block navigation %}
     <nav class="navbar navbar-light" style="background-color: indigo;">
-      <div class="container">
-        <a class="navbar-brand" style="color: gold" href="{% url "project-list" %}">Главная</a>
-        <a class="navbar-brand" style="color: gold"  href="{% url "project-create" %}">Создать проект</a>
-      </div>
+        <div class="container">
+            <a class="navbar-brand" style="color: gold" href="{% url "project-list" %}">Главная</a>
+            <a class="navbar-brand" style="color: gold"  href="{% url "project-create" %}">Создать проект</a>
+            {% if user.is_authenticated %}
+            <a class="navbar-brand" style="color: gold"  href="{% url "logout" %}">Выход</a>
+            {% else %}
+            <a class="navbar-brand" style="color: gold"  href="{% url "login" %}">Вход</a>
+            {% endif %}
+        </div>
     </nav>
     {% endblock navigation %}
     {% block content %} {% endblock content %}

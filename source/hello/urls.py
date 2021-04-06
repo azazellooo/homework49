@@ -22,5 +22,6 @@ from webapp.views import ProjectListView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ProjectListView.as_view(), name='project-list'),
-    path('webapp/', include('webapp.urls')),
+    path('todolist/', include('webapp.urls')),
+    path('accounts/', include('accounts.urls'))
 ]
