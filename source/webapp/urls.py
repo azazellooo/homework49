@@ -10,6 +10,7 @@ from webapp.views.project_views import (
 )
 
 urlpatterns = [
+    path('', ProjectListView.as_view(), name='project-list'),
     path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-view'),
     path('project/<int:pk>/update', ProjectUpdateView.as_view(), name='project-update'),
     path('project/add', ProjectCreateView.as_view(), name='project-create'),
