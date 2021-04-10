@@ -12,12 +12,13 @@
 <body>
     <div class="jumbotron fluid">
     <div class="container">
-    <form action="{% url 'accounts:login' %}" method="post">
-        {% csrf_token %}
-        <div class="mb-3">
         {% if has_error %}
             <p style="color: crimson">Неверное имя пользователя или пароль.</p>
         {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+
         <label for="username" class="form-label">Username:</label>
             <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
         </div>

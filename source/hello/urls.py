@@ -16,12 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from webapp.views import ProjectListView
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ProjectListView.as_view(), name='project-list'),
-    path('todolist/', include('webapp.urls')),
+    path("", include('webapp.urls')),
     path('accounts/', include('accounts.urls'))
 ]

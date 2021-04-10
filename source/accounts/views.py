@@ -1,24 +1,16 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from accounts.forms import UserRegisterForm
 
 
-def login_view(request):
+def register_view(request, **kwargs):
     context = {}
+    form = UserRegisterForm()
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
             return redirect('project-list')
-        context['has_error'] = True
-    return render(request, 'login.html', context=context)
-
-
-@login_required
-def logout_view(request):
-    logout(request)
-    return redirect('project-list')
+    context['form'] = form
+    return render(request, 'registration/register.html', context=context)
 
 # Create your views here.
