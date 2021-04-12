@@ -48,7 +48,8 @@
     "started_at": "2021-03-10",
     "finished_at": null,
     "summary": "Project__A",
-    "description": "description of this pretty-cute project! .........."
+    "description": "description of this pretty-cute project! ..........",
+    "is_deleted": false
   }
 },
 {
@@ -58,17 +59,19 @@
     "started_at": "2021-02-12",
     "finished_at": null,
     "summary": "test project",
-    "description": "mlsdmlmfsdf"
+    "description": "mlsdmlmfsdf",
+    "is_deleted": false
   }
 },
 {
   "model": "webapp.project",
-  "pk": 5,
+  "pk": 7,
   "fields": {
-    "started_at": "2021-02-12",
+    "started_at": "2021-03-10",
     "finished_at": null,
     "summary": "проект C",
-    "description": "jkl lkj"
+    "description": "ддддд",
+    "is_deleted": true
   }
 },
 {
@@ -333,21 +336,6 @@
 },
 {
   "model": "webapp.issue",
-  "pk": 39,
-  "fields": {
-    "summary": "issue    issue",
-    "description": "k",
-    "status": 1,
-    "project": 4,
-    "created_at": "2021-04-01T08:14:22.114Z",
-    "updated_at": "2021-04-01T08:14:22.114Z",
-    "type": [
-      3
-    ]
-  }
-},
-{
-  "model": "webapp.issue",
   "pk": 40,
   "fields": {
     "summary": "task",
@@ -423,35 +411,17 @@
 },
 {
   "model": "webapp.issue",
-  "pk": 51,
+  "pk": 52,
   "fields": {
-    "summary": "task",
+    "summary": "to do smth",
     "description": "",
-    "status": 3,
-    "project": 5,
-    "created_at": "2021-04-01T08:15:04.106Z",
-    "updated_at": "2021-04-01T08:15:04.106Z",
+    "status": 1,
+    "project": 4,
+    "created_at": "2021-04-06T10:09:59.388Z",
+    "updated_at": "2021-04-06T10:09:59.388Z",
     "type": [
       1
     ]
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$216000$ecyix6PG6Den$ivwhAzRAm0yOT3+8CRNlduDKdStg2vsNeBuM5BtnWI0=",
-    "last_login": "2021-03-30T08:47:24.938Z",
-    "is_superuser": true,
-    "username": "user",
-    "first_name": "",
-    "last_name": "",
-    "email": "karlygachkenenbaeva@gmail.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2021-03-10T09:10:40.426Z",
-    "groups": [],
-    "user_permissions": []
   }
 }
 ]
