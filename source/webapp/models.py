@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from webapp.validators import SymbolCheckValidator, ForbiddenWordsValidator
 
@@ -22,6 +23,7 @@ class Project(models.Model):
     summary = models.CharField(max_length=130, verbose_name='Название')
     description = models.TextField(max_length=5000, verbose_name='Описание')
     is_deleted = models.BooleanField(default=False)
+    user = models.ManyToManyField(get_user_model(), related_name='user', verbose_name='Пользователи')
 
 
 class Issue(models.Model):
