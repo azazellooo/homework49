@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron" style="background-color: #f8f1f1">
+    <h1>Редактировать список пользователей проекта № {{ project.id }}</h1>
+        <h3><a style="color: #b088f9" href="{% url 'project-view' project.id %}">Вернуться к проекту</a></h3>
+
+        <form action="" method="post">
+            {% include 'partial/form.html'%}
+            <input class="btn btn-success" type="submit" value="Обновить"/>
+        </form>
+{% endblock content %}

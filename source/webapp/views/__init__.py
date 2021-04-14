@@ -11,5 +11,6 @@ from webapp.views.project_views import (
     ProjectDetailView,
     ProjectCreateView,
     ProjectUpdateView,
-    ProjectDeleteView
+    ProjectDeleteView,
+    ProjectUsersUpdate
 )

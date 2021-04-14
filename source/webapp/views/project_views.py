@@ -3,9 +3,10 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 from webapp.models import Project
-from webapp.forms import ProjectForm
+from webapp.forms import ProjectForm, ProjectUserForm
 
 
 class ProjectListView(ListView):
@@ -15,6 +16,7 @@ class ProjectListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        print(User.objects.all())
         return queryset.filter(is_deleted=False)
 
 
@@ -58,9 +60,36 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
         queryset = super().get_queryset()
         return queryset.filter(is_deleted=False)
 
-
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.is_deleted = True
         self.object.save()
         return HttpResponseRedirect(self.success_url)
+
+
+# class ProjectUsersAdd(LoginRequiredMixin, TemplateView):
+#     template_name = 'project/users_update.html'
+#
+#     def get_context_data(self, **kwargs):
+#         users = User.objects.all()
+#         project = get_object_or_404(Project, pk=kwargs.get('pk'))
+#         context = super().get_context_data(**kwargs)
+#         context['users'] = users
+#         context['project'] = project
+#         return context
+#
+#     def post(self, request, **kwargs):
+#         project = get_object_or_404(Project, pk=kwargs.get('pk'))
+#         adding_user = request.POST.getlist('user')
+#         print(project.user.all())
+#         print(adding_user)
+#         project.user.add(adding_user)
+#         return reverse('project-view', kwargs={'pk':self.kwargs.get('pk')})
+
+class ProjectUsersUpdate(LoginRequiredMixin, UpdateView):
+    model = Project
+    template_name = 'project/users_update.html'
+    form_class = ProjectUserForm
+
+    def get_success_url(self):
+        return reverse('project-view', kwargs={'pk': self.kwargs.get('pk')})

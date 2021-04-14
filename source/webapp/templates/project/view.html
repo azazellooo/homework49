@@ -16,5 +16,14 @@
         <p> <a href="{% url "issue-view" issue.id %}" style="color: #b088f9">{{ issue.summary }}</a>. Статус: {{  issue.status }} </p>
     {% endfor %}
     {% endif %}
+    {% if not project.user.all %}
+        <h3 style="margin-top: 50px; color: darkgray">Пользователей нет</h3>
+    {% else %}
+        <h3 style="margin-top: 50px; color: darkorchid">Пользователи:</h3>
+        {% for user in project.user.all %}
+            <p style="color: #b088f9">{{ user.username }}</p>
+        {% endfor %}
+    {% endif %}
+    <a class="btn btn-dark btn-lg" href="{% url "user-add" project.id %}">Изменить список</a>
     </div>
 {% endblock content %}
