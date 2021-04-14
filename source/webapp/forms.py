@@ -20,3 +20,10 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['summary', 'description', 'started_at', 'finished_at']
+
+
+class ProjectUserForm(forms.ModelForm):
+
+    class Meta:
+        model = Project
+        fields = ['user']
