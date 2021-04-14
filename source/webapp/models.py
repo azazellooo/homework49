@@ -25,6 +25,11 @@ class Project(models.Model):
     is_deleted = models.BooleanField(default=False)
     user = models.ManyToManyField(get_user_model(), related_name='user', verbose_name='Пользователи')
 
+    class Meta:
+        permissions = [
+            ('сan_update_project_user', 'Can update Project User')
+        ]
+
 
 class Issue(models.Model):
     summary = models.CharField(max_length=130,
