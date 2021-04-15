@@ -5,9 +5,19 @@
     <h1>{{ project.summary }}</h1>
         <p>{{ project.description }}</p>
         <p style="color: darkorchid">Старт: {{ project.started_at }}</p>
+
+    {% if perms.webapp.change_project %}
     <a class="btn btn-success btn-lg" href="{% url "project-update" project.id %}">Редактировать проект</a>
-    <a class="btn btn-warning btn-lg" href="{% url "issue-create" project.id %}">добавить задачу</a>
+    {% endif %}
+
+    {% if perms.webapp.delete_project %}
     <a class="btn btn-dark btn-lg" href="{% url "project-delete" project.id %}">Удалить проект</a>
+    {% endif %}
+
+    {% if perms.webapp.add_issue and request.user in project.user.all %}
+    <a class="btn btn-warning btn-lg" href="{% url "issue-create" project.id %}">добавить задачу</a>
+    {% endif %}
+
     {% if not project.issue.all %}
         <h2 style="margin-top: 100px">Задач нет.</h2>
     {% else %}
@@ -24,6 +34,8 @@
             <p style="color: #b088f9">{{ user.username }}</p>
         {% endfor %}
     {% endif %}
-    <a class="btn btn-dark btn-lg" href="{% url "user-add" project.id %}">Изменить список</a>
+    {% if perms.webapp.can_update_project_user and request.user in project.user.all %}
+        <a class="btn btn-dark btn-lg" href="{% url "user-add" project.id %}">Изменить список</a>
+    {% endif %}
     </div>
 {% endblock content %}

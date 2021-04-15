@@ -18,8 +18,13 @@
         <p class="card-text">{{ issue.description }}</p>
       {% endif%}
     <p class="lead">Дата создания: {{ issue.created_at }}</p>
+
+  {% if perms.webapp.change_issue and request.user in issue.project.user.all %}
     <a href="{% url "issue-update" issue.id %}" class="btn btn-light" style="background-color: #da9ff9">Редактировать задачу</a>
+      {% endif %}
+  {% if perms.webapp.delete_issue and request.user in issue.project.user.all  %}
     <a href="{% url "issue-delete" issue.id %}" class="btn btn-warning" >Удалить задачу</a>
+  {% endif %}
   </div>
        </div>
        </div>

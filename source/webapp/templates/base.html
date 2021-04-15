@@ -12,13 +12,16 @@
     <nav class="navbar navbar-light" style="background-color: indigo;">
         <div class="container">
             <a class="navbar-brand" style="color: gold" href="{% url "project-list" %}">Главная</a>
+        {% if perms.webapp.add_project %}
             <a class="navbar-brand" style="color: gold"  href="{% url "project-create" %}">Создать проект</a>
+        {% endif %}
             {% if user.is_authenticated %}
             <a class="navbar-brand" style="color: gold"  href="{% url "accounts:logout" %}?next={{ request.get_full_path }}">Выход</a>
             {% else %}
             <a class="navbar-brand" style="color: gold"  href="{% url "accounts:login" %}?next={{ request.get_full_path }}">Вход</a>
             {% endif %}
             <a class="navbar-brand" style="color: gold" href="{% url "accounts:register" %}">Регистрация</a>
+        <a class="navbar-brand" style="color: rosybrown" href="#">{{ request.user }}</a>
         </div>
     </nav>
     {% endblock navigation %}

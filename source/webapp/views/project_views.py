@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.shortcuts import reverse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import reverse, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User
 
 from webapp.models import Project
@@ -16,7 +16,6 @@ class ProjectListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print(User.objects.all())
         return queryset.filter(is_deleted=False)
 
 
@@ -29,14 +28,16 @@ class ProjectDetailView(DetailView):
         return queryset.filter(is_deleted=False)
 
 
-class ProjectCreateView(LoginRequiredMixin, CreateView):
+class ProjectCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'webapp.add_project'
     model = Project
     template_name = 'project/create.html'
     form_class = ProjectForm
     success_url = reverse_lazy('project-list')
 
 
-class ProjectUpdateView(LoginRequiredMixin, UpdateView):
+class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'webapp.add_project'
     form_class = ProjectForm
     template_name = 'project/update.html'
     model = Project
@@ -50,7 +51,8 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
         return queryset.filter(is_deleted=False)
 
 
-class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'webapp.add_project'
     model = Project
     template_name = 'project/delete.html'
     context_object_name = 'project'
@@ -86,10 +88,16 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
 #         project.user.add(adding_user)
 #         return reverse('project-view', kwargs={'pk':self.kwargs.get('pk')})
 
-class ProjectUsersUpdate(LoginRequiredMixin, UpdateView):
+class ProjectUsersUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = 'webapp.can_update_project_user'
     model = Project
     template_name = 'project/users_update.html'
     form_class = ProjectUserForm
+
+    def has_permission(self):
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        users = project.user.all()
+        return super().has_permission() and self.request.user in users
 
     def get_success_url(self):
         return reverse('project-view', kwargs={'pk': self.kwargs.get('pk')})

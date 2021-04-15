@@ -10,8 +10,7 @@ from django.views.generic import (
 )
 from django.db.models import Q
 from django.utils.http import urlencode
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 from webapp.models import Issue, Project
 from webapp.forms import IssueForm, SearchForm
@@ -64,10 +63,16 @@ class IssueView(TemplateView):
         return context
 
 
-class IssueCreateView(LoginRequiredMixin, CreateView):
+class IssueCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'webapp.add_issue'
     model = Issue
     template_name = 'issue/create.html'
     form_class = IssueForm
+
+    def has_permission(self):
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        users = project.user.all()
+        return super().has_permission() and self.request.user in users
 
     def get_success_url(self):
         return reverse('project-view', kwargs={'pk': self.kwargs.get('pk')})
@@ -78,20 +83,33 @@ class IssueCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class IssueUpdateView(LoginRequiredMixin, UpdateView):
+class IssueUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'webapp.add_issue'
     model = Issue
     template_name = 'issue/update.html'
     form_class = IssueForm
     context_object_name = 'issue'
 
+    def has_permission(self):
+        issue = get_object_or_404(Issue, pk=self.kwargs.get('pk'))
+        users = issue.project.user.all()
+        return super().has_permission() and self.request.user in users
+
     def get_success_url(self):
+        print(self.model, self.kwargs)
         return reverse('issue-view', kwargs={'pk': self.kwargs.get('pk')})
 
 
-class IssueDeleteView(LoginRequiredMixin, DeleteView):
+class IssueDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'webapp.delete_issue'
     template_name = 'issue/delete.html'
     model = Issue
     context_object_name = 'issue'
+
+    def has_permission(self):
+        issue = get_object_or_404(Issue, pk=self.kwargs.get('pk'))
+        users = issue.project.user.all()
+        return super().has_permission() and self.request.user in users
 
     def get_success_url(self):
         return reverse('project-view', kwargs={'pk': self.object.project.pk})
