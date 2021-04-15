@@ -47,9 +47,15 @@
   "fields": {
     "started_at": "2021-03-10",
     "finished_at": null,
-    "summary": "Project__A",
+    "summary": "Project A",
     "description": "description of this pretty-cute project! ..........",
-    "is_deleted": false
+    "is_deleted": false,
+    "user": [
+      1,
+      24,
+      25,
+      26
+    ]
   }
 },
 {
@@ -60,7 +66,8 @@
     "finished_at": null,
     "summary": "test project",
     "description": "mlsdmlmfsdf",
-    "is_deleted": false
+    "is_deleted": false,
+    "user": []
   }
 },
 {
@@ -71,7 +78,8 @@
     "finished_at": null,
     "summary": "проект C",
     "description": "ддддд",
-    "is_deleted": true
+    "is_deleted": true,
+    "user": []
   }
 },
 {
