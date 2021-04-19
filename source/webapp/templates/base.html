@@ -21,7 +21,7 @@
             <a class="navbar-brand" style="color: gold"  href="{% url "accounts:login" %}?next={{ request.get_full_path }}">Вход</a>
             {% endif %}
             <a class="navbar-brand" style="color: gold" href="{% url "accounts:register" %}">Регистрация</a>
-        <a class="navbar-brand" style="color: rosybrown" href="#">{{ request.user }}</a>
+        <a class="navbar-brand" style="color: rosybrown" href="{% url 'accounts:user-detail' request.user.id %}">{{ request.user }}</a>
         </div>
     </nav>
     {% endblock navigation %}
