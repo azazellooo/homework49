@@ -37,7 +37,7 @@ class ProjectCreateView(PermissionRequiredMixin, CreateView):
 
 
 class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'webapp.add_project'
+    permission_required = 'webapp.change_project'
     form_class = ProjectForm
     template_name = 'project/update.html'
     model = Project
@@ -52,7 +52,7 @@ class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
 
 
 class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'webapp.add_project'
+    permission_required = 'webapp.delete_project'
     model = Project
     template_name = 'project/delete.html'
     context_object_name = 'project'
