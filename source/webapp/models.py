@@ -27,7 +27,7 @@ class Project(models.Model):
 
     class Meta:
         permissions = [
-            ('can_update_project_user', 'Can update Project User')
+            ('can_update_project_user', 'Can update Project User'),
         ]
 
 

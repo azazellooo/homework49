@@ -7,4 +7,9 @@ class Profile(models.Model):
     avatar = models.ImageField(null=True, blank=True, upload_to='user_pics', verbose_name='Аватар')
     github = models.URLField(null=True, blank=True, max_length=250, verbose_name='Ссылка на github')
     about_user = models.TextField(null=True, blank=True, verbose_name='О себе', max_length=3000)
+
+    class Meta:
+        permissions = [
+            ('can_view_user_list', 'Can view user list')
+        ]
 # Create your models here.
