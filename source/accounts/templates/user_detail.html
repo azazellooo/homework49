@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron" style="background-color: #f8f1f1">
+    <h1>{{ user_object.get_full_name|default:user_object.username }}</h1>
+        <p>username: {{ user_object.username }}</p>
+        {% if user_object.profile.avatar %}
+        <img src="{{ user_object.profile.avatar.url }}" width="250" height="250" alt="user picture">
+        {% endif %}
+        <p>Github: <a href="{{ user_object.profile.github }}">{{ user_object.profile.github }}</a></p>
+        <p>{{ user_object.profile.about_user }}</p>
+        {% include 'partial/project_list.html' %}
+{% endblock content %}
