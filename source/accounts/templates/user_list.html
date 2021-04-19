@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron" style="background-color: #f8f1f1">
+    <h1>Все пользователи</h1>
+        {% for user in users %}
+            <p><a style="color: darkslategrey" href="{% url 'accounts:user-detail' user.id %}">{{ user.username }}</a></p>
+        {% endfor %}
+{% endblock content %}
