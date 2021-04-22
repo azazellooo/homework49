@@ -24,6 +24,7 @@
         {% if user.is_authenticated %}
             <a class="navbar-brand" style="color: rosybrown" href="{% url 'accounts:user-detail' request.user.id %}">{{ request.user }}</a>
             <a class="navbar-brand" style="color: darkgoldenrod" href="{% url 'accounts:user-update' %}">редактировать профиль</a>
+            <a class="navbar-brand" style="color: darkgoldenrod" href="{% url 'accounts:change-password' %}">Сменить пароль</a>
             <a class="navbar-brand" style="color: gold"  href="{% url "accounts:logout" %}?next={{ request.get_full_path }}">Выход</a>
             {% else %}
             <a class="navbar-brand" style="color: gold"  href="{% url "accounts:login" %}?next={{ request.get_full_path }}">Вход</a>

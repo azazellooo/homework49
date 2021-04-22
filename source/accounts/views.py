@@ -1,8 +1,8 @@
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login, get_user_model, update_session_auth_hash
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, UpdateView
-from accounts.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from accounts.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserChangePasswordForm
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 from accounts.models import Profile
@@ -81,6 +81,24 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         if context['profile_form'] is None:
             context['profile_form'] = self.get_profile_form()
         return context
+
+    def get_success_url(self):
+        return reverse('accounts:user-detail', kwargs={'pk': self.object.pk})
+
+
+class UserPasswordChangeView(LoginRequiredMixin, UpdateView):
+    model = get_user_model()
+    template_name = 'change_password.html'
+    context_object_name = 'user_object'
+    form_class = UserChangePasswordForm
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def form_valid(self, form):
+        response = super(UserPasswordChangeView, self).form_valid(form)
+        update_session_auth_hash(self.request, self.request.user)
+        return response
 
     def get_success_url(self):
         return reverse('accounts:user-detail', kwargs={'pk': self.object.pk})
