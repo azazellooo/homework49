@@ -1,9 +1,10 @@
+{% if not fileds_only %}
 {% csrf_token %}
+{% endif %}
 
 {% for error in form.non_field_errors %}
    <p style="color: red">{{ error }}</p>
 {% endfor %}
-
 
 {% for field in form %}
    <p>{{ field.label }}: </p>
@@ -12,4 +13,5 @@
    {% endfor %}
     <p>{{ field }}</p>
     <br>
+
 {% endfor %}

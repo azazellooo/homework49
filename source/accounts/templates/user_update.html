@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Update user{% endblock title %}
+{% block content %}
+    <div class="jumbotron" style="background-color: #f8f1f1">
+    <h1>Редактировать личные данные</h1>
+
+    <form action="{% url 'accounts:user-update'  %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include "partial/form.html" with form=form fields_only=True %}
+        {% include "partial/form.html" with form=profile_form fields_only=True %}
+        <div class="col-sm-10">
+          <input type="submit" value="сохранить"/>
+        </div>
+    </form>
+    </div>
+{% endblock content %}

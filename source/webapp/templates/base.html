@@ -15,14 +15,16 @@
         {% if perms.webapp.add_project %}
             <a class="navbar-brand" style="color: gold"  href="{% url "project-create" %}">Создать проект</a>
         {% endif %}
-
+        {% if not user.is_authenticated %}
             <a class="navbar-brand" style="color: gold" href="{% url "accounts:register" %}">Регистрация</a>
-        {% if perms.accounts.can_view_user_list %}
+        {% endif %}
+            {% if perms.accounts.can_view_user_list %}
         <a class="navbar-brand" style="color: gold" href="{% url "accounts:user_list" %}">Все пользователи</a>
         {% endif %}
         {% if user.is_authenticated %}
-            <a class="navbar-brand" style="color: gold"  href="{% url "accounts:logout" %}?next={{ request.get_full_path }}">Выход</a>
             <a class="navbar-brand" style="color: rosybrown" href="{% url 'accounts:user-detail' request.user.id %}">{{ request.user }}</a>
+            <a class="navbar-brand" style="color: darkgoldenrod" href="{% url 'accounts:user-update' %}">редактировать профиль</a>
+            <a class="navbar-brand" style="color: gold"  href="{% url "accounts:logout" %}?next={{ request.get_full_path }}">Выход</a>
             {% else %}
             <a class="navbar-brand" style="color: gold"  href="{% url "accounts:login" %}?next={{ request.get_full_path }}">Вход</a>
             {% endif %}
